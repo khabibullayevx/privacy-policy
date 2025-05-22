@@ -1,32 +1,62 @@
-/* Import royalty-free font Inter from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-/* Global Styles */
 body {
-    background-color: #000;
-    color: #fff;
+    background-color: #f9f9f9;
+    color: #1a1a1a;
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-}
-
-/* Title */
-h1 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-/* Paragraphs and other text */
-p, li {
-    font-size: 16px;
-}
-
-/* Optional: Container for spacing */
-.container {
+    line-height: 1.7;
+  }
+  
+  .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-}
+    padding: 24px 16px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Headings */
+  h1, h2, h3 {
+    color: #111;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+  
+  /* Typography */
+  p, li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  /* List bullets spacing */
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Mobile improvements */
+  @media (max-width: 600px) {
+    .container {
+      padding: 16px;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    p, li {
+      font-size: 15px;
+    }
+  }
+  
