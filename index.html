@@ -9,28 +9,27 @@
 </head>
 <body>
   <header class="header">
-    <img src="images/kiyim-logo.png" alt="Kiyim Logo" class="logo" />
+    <img src="assets/logo.png" alt="Kiyim Logo" class="logo" />
   </header>
 
   <main class="hero">
     <h1>Launch Your Boutique on <span class="highlight">Kiyim</span></h1>
     <p class="subheadline">We connect independent fashion brands to users worldwide. Be first.</p>
     
+    <section class="email-signup">
+      <h2>Stay in the Loop</h2>
+      <p>Enter your email to get early access, vendor news, and exclusive updates.</p>
+      <form 
+        action="https://formspree.io/f/YOUR_FORM_ID" 
+        method="POST" 
+        class="email-form"
+      >
+        <input type="email" name="email" placeholder="Your email address" required />
+        <button type="submit">Notify Me</button>
+      </form>
+    </section>
+
     <div class="cta-buttons">
-
-      <section class="email-signup">
-        <h2>Stay in the Loop</h2>
-        <p>Enter your email to get early access, vendor news, and exclusive updates.</p>
-        <form 
-          action="https://formspree.io/f/YOUR_FORM_ID" 
-          method="POST" 
-          class="email-form"
-        >
-          <input type="email" name="email" placeholder="Your email address" required />
-          <button type="submit">Notify Me</button>
-        </form>
-      </section>
-
       <a href="https://forms.gle/YOUR_SIGNUP_FORM" class="btn primary">Become a Vendor</a>
     </div>
 
@@ -38,11 +37,11 @@
       <h2>Download the App</h2>
       <div class="qr-codes">
         <div>
-          <img src="images/qr-ios.png" alt="Download on iOS" />
+          <img src="assets/qr-ios.png" alt="Download on iOS" />
           <p>App Store</p>
         </div>
         <div>
-          <img src="images/qr-android.png" alt="Download on Android" />
+          <img src="assets/qr-android.png" alt="Download on Android" />
           <p>Google Play</p>
         </div>
       </div>
@@ -50,7 +49,7 @@
   </main>
 
   <footer class="footer">
-    <a href="/privacy/en/privacy.html">Privacy Policy</a> | 
+    <a href="/privacy/en/index.html">Privacy Policy</a> | 
     <a href="mailto:khasankhabibullaev@gmail.com">Contact</a>
   </footer>
 </body>
