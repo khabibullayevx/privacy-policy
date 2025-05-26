@@ -227,6 +227,7 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .btn::before {
@@ -456,8 +457,8 @@
 
     <footer class="footer">
       <div class="container">
-        <a href="/privacy/en/index.html" target="_blank">Privacy Policy</a> |
-        <a href="/contact/en/contact.html" target="_blank">Contact</a>
+        <a href="privacy/en/index.html" target="_blank">Privacy Policy</a> |
+        <a href="contact/en/contact.html" target="_blank">Contact</a>
       </div>
     </footer>
   </div>
@@ -501,19 +502,30 @@
       }, 1000);
     });
 
-    // Handle vendor signup
+    // Handle vendor signup with language detection
     function handleVendorSignup() {
-      alert('Vendor signup form would open here. Replace with your actual signup link.');
+      const userLang = navigator.language || navigator.userLanguage;
+      let langCode = 'en'; // default
+      
+      if (userLang.startsWith('ru')) {
+        langCode = 'ru';
+      } else if (userLang.startsWith('uz')) {
+        langCode = 'uz';
+      } else if (userLang.startsWith('it')) {
+        langCode = 'it';
+      }
+      
+      window.location.href = `vendor registration/${langCode}/form.html`;
     }
 
     // Handle privacy policy
     function showPrivacy() {
-      alert('Privacy policy would open here. Replace with your actual privacy policy link.');
+      window.open('privacy/en/index.html', '_blank');
     }
 
     // Handle contact
     function showContact() {
-      alert('Contact page would open here. Replace with your actual contact link.');
+      window.open('contact/en/contact.html', '_blank');
     }
 
     // Initialize particles when page loads
