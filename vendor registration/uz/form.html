@@ -758,51 +758,55 @@
 
     // Next step function
     function nextStep() {
-      const currentStepEl = document.querySelector(`[data-step="${currentStep}"]`);
-      const inputs = currentStepEl.querySelectorAll('input[required], select[required], textarea[required]');
-      
-      // Validate current step
-      let valid = true;
-      inputs.forEach(input => {
-        if (!input.value.trim()) {
-          input.style.borderColor = '#ff6b6b';
-          valid = false;
-        } else {
-          input.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-        }
-      });
+  const currentStepEl = document.querySelector(`[data-step="${currentStep}"]`);
+  const inputs = currentStepEl.querySelectorAll('input[required], select[required], textarea[required]');
+  let valid = true;
 
-      if (!valid) {
-        alert('Iltimos, davom etishdan oldin barcha majburiy maydonlarni to\'ldiring.');
-        return;
-      }
-
-      if (currentStep < totalSteps) {
-        // Hide current step
-        currentStepEl.classList.remove('active');
-        
-        // Show next step
-        currentStep++;
-        const nextStepEl = document.querySelector(`[data-step="${currentStep}"]`);
-        nextStepEl.classList.add('active');
-        
-        updateStepIndicators();
-      }
+  inputs.forEach(input => {
+    if (!input.value.trim()) {
+      input.style.borderColor = '#ff6b6b';
+      valid = false;
+    } else {
+      input.style.borderColor = 'rgba(255, 255, 255, 0.05)';
     }
+  });
 
-    // Previous step function
-    function prevStep() {
-      if (currentStep > 1) {
-        // Hide current step
-        document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
-        
-        // Show previous step
-        currentStep--;
-        document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
-        
-        updateStepIndicators();
-      }
+  if (!valid) {
+    // Show correct alert depending on language
+    const lang = document.documentElement.lang;
+    if (lang === 'it') {
+      alert('Si prega di compilare tutti i campi richiesti prima di continuare.');
+    } else if (lang === 'ru') {
+      alert('Пожалуйста, заполните все обязательные поля, прежде чем продолжить.');
+    } else if (lang === 'uz') {
+      alert('Iltimos, davom etishdan oldin barcha majburiy maydonlarni to\'ldiring.');
+    } else {
+      alert('Please fill in all required fields before continuing.');
     }
+    return;
+  }
+
+  if (currentStep < totalSteps) {
+    // Hide all steps
+    document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+    // Show next step
+    currentStep++;
+    document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+    updateStepIndicators();
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    // Hide all steps
+    document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+    // Show previous step
+    currentStep--;
+    document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+    updateStepIndicators();
+  }
+}
+
 
     // File upload handling
     function handleFileUpload(inputId, listId) {
