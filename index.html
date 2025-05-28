@@ -53,14 +53,22 @@
       background: #000000;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding: 20px 0;
-      text-align: center; /* Centers the logo-link */
       z-index: 100;
     }
 
-    /* New style for the clickable logo container */
+    .header .container {
+        display: flex;
+        justify-content: space-between; /* Pushes logo and nav to ends */
+        align-items: center; /* Vertically centers them */
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Styles for the clickable logo container */
     .logo-link {
-        display: inline-block; /* Allows text-align: center on parent to work */
-        line-height: 0; /* Prevents extra space below the image */
+        display: inline-block;
+        line-height: 0;
     }
 
     /* Styles for the actual logo image */
@@ -69,11 +77,48 @@
       width: auto; /* Maintain aspect ratio */
       filter: brightness(1.2); /* Adjust if your logo needs brightening */
       transition: transform 0.3s ease;
-      vertical-align: middle; /* Helps with alignment if there's text around */
+      vertical-align: middle;
     }
 
     .logo:hover {
       transform: scale(1.05);
+    }
+
+    /* Navigation styles */
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px; /* Space between navigation items */
+    }
+
+    .main-nav a {
+      color: #666666;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.3s ease, transform 0.2s ease;
+      padding: 5px 0; /* Add padding for a better hover area */
+    }
+
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #ffffff, #666666);
+      transition: width 0.3s ease;
+    }
+
+    .main-nav a:hover {
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .main-nav a:hover::after {
+      width: 100%;
     }
 
     /* Main container */
@@ -331,19 +376,64 @@
       color: #666666;
     }
 
-    .footer a {
+    .footer .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* Space between content blocks in footer */
+    }
+
+    .footer-links a {
       color: #ffffff;
       text-decoration: none;
       margin: 0 20px;
       transition: color 0.3s ease;
     }
 
-    .footer a:hover {
+    .footer-links a:hover {
       color: #cccccc;
     }
 
+    /* Socials section */
+    .social-links {
+        display: flex;
+        gap: 25px; /* Space between social icons */
+        margin-bottom: 10px; /* Space between socials and footer links */
+    }
+
+    .social-link {
+        display: block; /* Make sure it's block to contain SVG properly */
+        color: #666666; /* Default icon color */
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-link:hover {
+        color: #ffffff; /* Icon color on hover */
+        transform: translateY(-3px) scale(1.1); /* Slight lift and scale on hover */
+    }
+
+    .social-link svg {
+        width: 28px; /* Icon size */
+        height: 28px; /* Icon size */
+        fill: currentColor; /* Allows color property to control SVG fill */
+        display: block; /* Ensures consistent sizing */
+    }
+
+
     /* Mobile optimizations */
     @media (max-width: 768px) {
+      .header .container {
+          flex-direction: column; /* Stack logo and nav vertically */
+          gap: 20px; /* Space between them */
+          padding: 15px 20px;
+      }
+
+      .main-nav ul {
+          gap: 20px; /* Smaller gap for mobile nav items */
+          justify-content: center; /* Center nav items when stacked */
+          flex-wrap: wrap; /* Allow nav items to wrap if screen is very small */
+      }
+
       .hero {
         padding: 60px 20px;
       }
@@ -377,6 +467,10 @@
       .qr-placeholder svg {
         width: 60px;
         height: 60px;
+      }
+      
+      .footer-links a {
+        margin: 0 10px; /* Adjust margin for mobile footer links */
       }
     }
 
@@ -419,6 +513,14 @@
         <a href="index.html" class="logo-link">
           <img src="logo.png" alt="Kiyim Logo" class="logo">
         </a>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#support">Support</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
 
@@ -466,8 +568,29 @@
 
     <footer class="footer">
       <div class="container">
-        <a href="privacy/en/index.html" target="_blank">Privacy Policy</a> |
-        <a href="contact/en/contact.html" target="_blank">Contact</a>
+        <div class="social-links">
+          <a href="https://www.instagram.com/kiyimofficial/" target="_blank" aria-label="Instagram" class="social-link">
+            <svg viewBox="0 0 24 24">
+              <path d="M7.8 2c-2.7 0-4.8 2.1-4.8 4.8v10.4c0 2.7 2.1 4.8 4.8 4.8h8.4c2.7 0 4.8-2.1 4.8-4.8V6.8c0-2.7-2.1-4.8-4.8-4.8H7.8zm8.4 1.6c.7 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2.5-1.2 1.2-1.2zM12 7.4c-2.5 0-4.6 2.1-4.6 4.6s2.1 4.6 4.6 4.6 4.6-2.1 4.6-4.6-2.1-4.6-4.6-4.6zm0 1.6c1.6 0 3 1.4 3 3s-1.4 3-3 3-3-1.4-3-3 1.4-3 3-3z"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15h-2.5v-3H10V9.5c0-2.2 1.44-3.4 3.67-3.4C14.72 6.1 15.5 6.2 16 6.3V8h-1.42c-1.33 0-1.68.67-1.68 1.63V12h3.5l-.6 3H13.5v6.8c4.56-.93 8-4.96 8-9.8z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com/yourchannel" target="_blank" aria-label="YouTube" class="social-link">
+            <svg viewBox="0 0 24 24">
+              <path d="M21.54 6.5C21.34 5.91 20.89 5.46 20.3 5.26c-1.54-.42-7.7-.42-7.7-.42s-6.16 0-7.7.42c-.59.2-1.04.65-1.24 1.24C3 8.04 3 12 3 12s0 3.96.46 5.5c.2.59.65 1.04 1.24 1.24 1.54.42 7.7.42 7.7.42s6.16 0 7.7-.42c.59-.2 1.04-.65 1.24-1.24C22 15.96 22 12 22 12s0-3.96-.46-5.5zM10 15.46V8.54L16 12l-6 3.46z"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="footer-links">
+          <a href="privacy/en/index.html" target="_blank">Privacy Policy</a> |
+          <a href="contact/en/contact.html" target="_blank">Contact</a>
+        </div>
+        <p>&copy; 2025 Kiyim. All rights reserved.</p>
       </div>
     </footer>
   </div>
@@ -524,9 +647,6 @@
         langCode = 'it';
       }
       
-      // Removed the unnecessary <a> tag here. 
-      // Add actual logic to redirect or show a popup for vendor signup.
-      // For demonstration, let's just log it:
       console.log(`Vendor signup initiated for language: ${langCode}`);
       alert(`Redirecting to vendor signup page for ${langCode.toUpperCase()}! (This is a placeholder action)`);
       // window.location.href = `vendor-signup-${langCode}.html`; // Example redirect
@@ -547,7 +667,7 @@
       createParticles();
     });
 
-    // Add smooth scroll behavior (no change needed here for logo)
+    // Add smooth scroll behavior for anchor links (no changes needed)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
