@@ -53,15 +53,23 @@
       background: #000000;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding: 20px 0;
-      text-align: center;
+      text-align: center; /* Centers the logo-link */
       z-index: 100;
     }
 
+    /* New style for the clickable logo container */
+    .logo-link {
+        display: inline-block; /* Allows text-align: center on parent to work */
+        line-height: 0; /* Prevents extra space below the image */
+    }
+
+    /* Styles for the actual logo image */
     .logo {
-      height: 50px;
-      width: auto;
-      filter: brightness(1.2);
+      height: 50px; /* Adjust as needed for your logo size */
+      width: auto; /* Maintain aspect ratio */
+      filter: brightness(1.2); /* Adjust if your logo needs brightening */
       transition: transform 0.3s ease;
+      vertical-align: middle; /* Helps with alignment if there's text around */
     }
 
     .logo:hover {
@@ -403,13 +411,14 @@
   </style>
 </head>
 <body>
-  <!-- Animated background -->
   <div class="bg-particles" id="particles"></div>
 
   <div class="loading">
     <header class="header">
-      <div class="logo" style="width: 120px; height: 50px; background: linear-gradient(135deg, #333333 0%, #666666 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-weight: 700; color: #ffffff;">
-        KIYIM
+      <div class="container">
+        <a href="index.html" class="logo-link">
+          <img src="logo.png" alt="Kiyim Logo" class="logo">
+        </a>
       </div>
     </header>
 
@@ -515,7 +524,12 @@
         langCode = 'it';
       }
       
-      <a href="#" class="btn primary" onclick="handleVendorSignup()">Become a Vendor</a>;
+      // Removed the unnecessary <a> tag here. 
+      // Add actual logic to redirect or show a popup for vendor signup.
+      // For demonstration, let's just log it:
+      console.log(`Vendor signup initiated for language: ${langCode}`);
+      alert(`Redirecting to vendor signup page for ${langCode.toUpperCase()}! (This is a placeholder action)`);
+      // window.location.href = `vendor-signup-${langCode}.html`; // Example redirect
     }
 
     // Handle privacy policy
@@ -533,7 +547,7 @@
       createParticles();
     });
 
-    // Add smooth scroll behavior
+    // Add smooth scroll behavior (no change needed here for logo)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
