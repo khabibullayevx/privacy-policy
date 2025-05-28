@@ -631,7 +631,7 @@
     function handleVendorSignup() {
       const userLang = navigator.language || navigator.userLanguage;
       let langCode = 'en'; // default
-      
+
       if (userLang.startsWith('ru')) {
         langCode = 'ru';
       } else if (userLang.startsWith('uz')) {
@@ -639,11 +639,10 @@
       } else if (userLang.startsWith('it')) {
         langCode = 'it';
       }
-      
+
       console.log(`Vendor signup initiated for language: ${langCode}`);
-      alert(`Redirecting to vendor signup page for ${langCode.toUpperCase()}! (This is a placeholder action)`);
-      // window.location.href = `vendor-signup-${langCode}.html`; // Example redirect
-    }
+      window.location.href = `vendor registration/${langCode}/form.html`;
+    }s
 
     // Handle privacy policy
     function showPrivacy() {
