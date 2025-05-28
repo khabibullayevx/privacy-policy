@@ -762,34 +762,18 @@
   const inputs = currentStepEl.querySelectorAll('input[required], select[required], textarea[required]');
   let valid = true;
 
-  inputs.forEach(input => {
-    if (!input.value.trim()) {
-      input.style.borderColor = '#ff6b6b';
+  for (let input of inputs) {
+    if (!input.checkValidity()) {
+      input.reportValidity(); // show default browser message
       valid = false;
-    } else {
-      input.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+      break;
     }
-  });
-
-  if (!valid) {
-    // Show correct alert depending on language
-    const lang = document.documentElement.lang;
-    if (lang === 'it') {
-      alert('Si prega di compilare tutti i campi richiesti prima di continuare.');
-    } else if (lang === 'ru') {
-      alert('Пожалуйста, заполните все обязательные поля, прежде чем продолжить.');
-    } else if (lang === 'uz') {
-      alert('Iltimos, davom etishdan oldin barcha majburiy maydonlarni to\'ldiring.');
-    } else {
-      alert('Please fill in all required fields before continuing.');
-    }
-    return;
   }
 
+  if (!valid) return;
+
   if (currentStep < totalSteps) {
-    // Hide all steps
     document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
-    // Show next step
     currentStep++;
     document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
     updateStepIndicators();

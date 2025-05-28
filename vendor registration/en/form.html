@@ -769,7 +769,10 @@
   let valid = true;
 
   inputs.forEach(input => {
-    if (!input.value.trim()) {
+    const value = input.value.trim();
+    console.log(`Checking input: name=${input.name}, value="${value}"`);
+    
+    if (!value) {
       input.style.borderColor = '#ff6b6b';
       valid = false;
     } else {
@@ -778,24 +781,20 @@
   });
 
   if (!valid) {
-    // Show correct alert depending on language
     const lang = document.documentElement.lang;
-    if (lang === 'it') {
-      alert('Si prega di compilare tutti i campi richiesti prima di continuare.');
-    } else if (lang === 'ru') {
-      alert('Пожалуйста, заполните все обязательные поля, прежде чем продолжить.');
-    } else if (lang === 'uz') {
-      alert('Iltimos, davom etishdan oldin barcha majburiy maydonlarni to\'ldiring.');
-    } else {
-      alert('Please fill in all required fields before continuing.');
-    }
+    const messages = {
+      it: 'Si prega di compilare tutti i campi richiesti prima di continuare.',
+      ru: 'Пожалуйста, заполните все обязательные поля, прежде чем продолжить.',
+      uz: 'Iltimos, davom etishdan oldin barcha majburiy maydonlarni to\'ldiring.',
+      en: 'Please fill in all required fields before continuing.',
+    };
+    alert(messages[lang] || messages.en);
     return;
   }
 
+  // Advance to next step
   if (currentStep < totalSteps) {
-    // Hide all steps
     document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
-    // Show next step
     currentStep++;
     document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
     updateStepIndicators();
