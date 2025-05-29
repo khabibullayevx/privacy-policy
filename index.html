@@ -35,7 +35,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: default; /* Removed custom cursor, cleaner */
+      cursor: default;
     }
 
     /* Minimal Floating Particles - Refined */
@@ -384,9 +384,6 @@
       color: var(--primary-color);
     }
 
-    /* Floating Action Buttons - Removed as per "too much things going on" */
-    /* .floating-actions { ... } */
-
     /* Footer */
     .footer {
       background: var(--darker-bg);
@@ -468,19 +465,56 @@
       margin-top: 15px; /* Added margin */
     }
 
-    /* Mobile Responsive */
+    /* Mobile Responsive - Header & Navigation Fixes */
     @media (max-width: 768px) {
       .header .container {
-        flex-direction: column;
-        gap: 15px; /* Reduced gap */
-        padding: 10px 20px; /* Reduced padding */
+        flex-direction: column; /* Stack logo and nav vertically */
+        gap: 12px; /* Reduced gap between logo and nav */
+        padding: 10px 20px; /* Adjusted padding */
+      }
+
+      .logo {
+        height: 32px; /* Significantly smaller logo on mobile */
       }
 
       .main-nav ul {
-        gap: 15px; /* Reduced gap */
+        gap: 15px; /* Consistent gap for mobile nav items */
         flex-wrap: wrap;
         justify-content: center;
+        padding: 0 10px; /* Add horizontal padding to nav list */
       }
+
+      .main-nav a {
+        font-size: 0.95rem; /* Slightly smaller font for mobile nav */
+        padding: 6px 12px; /* Smaller padding for nav links */
+        /* Revert 'Become a Vendor' to a normal link style on mobile */
+        background: transparent; /* Ensure no background on mobile links */
+        border-radius: 0; /* Remove border-radius for cleaner text link */
+        color: var(--secondary-color); /* Consistent text color */
+      }
+
+      /* Specific adjustment for 'Become a Vendor' if it was treated differently */
+      .main-nav a[onclick*="handleVendorSignup"]::before {
+        display: none; /* Hide the gradient pseudo-element on mobile for this link */
+      }
+      .main-nav a[onclick*="handleVendorSignup"]:hover {
+        color: var(--primary-color); /* Normal hover effect */
+        transform: none; /* No vertical transform on hover for simplicity */
+      }
+      .main-nav a[onclick*="handleVendorSignup"]::after {
+        content: ''; /* Ensure consistent underline if others have it */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px; /* Thinner underline */
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+      .main-nav a[onclick*="handleVendorSignup"]:hover::after {
+        width: 100%;
+      }
+
 
       .hero {
         padding: 100px 20px 60px; /* Adjusted padding */
