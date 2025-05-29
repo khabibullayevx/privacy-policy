@@ -36,6 +36,31 @@
       line-height: 1.6;
       overflow-x: hidden;
       cursor: default;
+      position: relative; /* Needed for video positioning */
+    }
+
+    /* Background Video Styles */
+    #background-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -2; /* Below particles */
+      background-size: cover;
+      opacity: 0.1; /* Adjust for desired transparency */
+      filter: brightness(0.8); /* Slightly dim the video */
+    }
+
+    /* Ensure content is above video */
+    .loading {
+      position: relative;
+      z-index: 1; /* Puts content above the video */
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+      background: transparent; /* Allow video to show through */
     }
 
     /* Minimal Floating Particles - Refined */
@@ -46,7 +71,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: -1;
+      z-index: -1; /* Above video, below content */
     }
 
     .particle {
@@ -257,7 +282,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem); /* Adjusted clamp for better scaling */
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Smaller font size */
       font-weight: 900;
       margin-bottom: 25px; /* Reduced margin */
       background: var(--gradient-text);
@@ -282,7 +307,7 @@
     }
 
     .subheadline {
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem); /* Adjusted clamp */
+      font-size: clamp(1rem, 2vw, 1.3rem); /* Smaller font size */
       color: var(--secondary-color);
       margin-bottom: 50px; /* Reduced margin */
       font-weight: 300;
@@ -304,7 +329,8 @@
       border: 1px solid var(--glass-border-light);
       border-radius: 25px; /* Slightly smaller radius */
       padding: 40px; /* Reduced padding */
-      margin-bottom: 70px; /* Reduced margin */
+      margin-top: 70px; /* Added margin to push it down from QR section */
+      margin-bottom: 70px; /* Adjusted margin */
       animation: slideUp 0.9s ease-out 0.4s both; /* Faster animation */
       position: relative;
       text-align: center; /* Center content */
@@ -314,7 +340,7 @@
     }
 
     .email-signup h2 {
-      font-size: 2.2rem; /* Adjusted font size */
+      font-size: 2rem; /* Smaller font size */
       margin-bottom: 18px; /* Reduced margin */
       font-weight: 700;
       color: var(--primary-color);
@@ -323,7 +349,7 @@
     .email-signup p {
       color: var(--secondary-color);
       margin-bottom: 35px; /* Reduced margin */
-      font-size: 1.1rem; /* Consistent font size */
+      font-size: 1rem; /* Smaller font size */
       font-weight: 300;
     }
 
@@ -402,7 +428,7 @@
     }
 
     .qr-section h2 {
-      font-size: 2.2rem; /* Adjusted font size */
+      font-size: 2rem; /* Smaller font size */
       margin-bottom: 40px; /* Reduced margin */
       font-weight: 700;
       color: var(--primary-color);
@@ -464,7 +490,7 @@
     .qr-item p {
       color: var(--secondary-color);
       font-weight: 600;
-      font-size: 1.1rem; /* Consistent font size */
+      font-size: 1rem; /* Smaller font size */
       transition: color 0.2s ease;
     }
 
@@ -630,15 +656,15 @@
 
     @media (max-width: 480px) {
       .hero h1 {
-        font-size: 2.8rem; /* Further adjustment for small screens */
+        font-size: 2.5rem; /* Further adjustment for small screens */
       }
 
       .subheadline {
-        font-size: 1rem;
+        font-size: 0.9rem; /* Further adjustment for small screens */
       }
 
       .email-signup h2, .qr-section h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem; /* Further adjustment for small screens */
       }
 
       .email-signup {
@@ -663,11 +689,6 @@
     }
 
     /* Loading Animation */
-    .loading {
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-    }
-
     @keyframes fadeIn {
       to { opacity: 1; }
     }
@@ -689,6 +710,12 @@
   <div class="scroll-progress" id="scrollProgress"></div>
   
   <div class="particles" id="particles"></div>
+
+  <video autoplay muted loop playsinline id="background-video">
+    <source src="your-background-video.mp4" type="video/mp4">
+    <source src="your-background-video.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
 
   <div class="loading">
     <header class="header" id="header">
