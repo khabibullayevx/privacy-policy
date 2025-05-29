@@ -4,72 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kiyim – Launch Your Boutique</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #f0f0f0; /* Lighter white for text, subtle gradients */
+      --secondary-color: #b0b0b0; /* Subtler gray for secondary text/elements */
+      --accent-color: #666666; /* Even darker gray for subtle highlights */
+      --dark-bg: #0d0d0d; /* Slightly lighter than pure black for depth */
+      --darker-bg: #000000; /* Pure black for deeper elements */
+      --glass-bg-light: rgba(255, 255, 255, 0.03);
+      --glass-border-light: rgba(255, 255, 255, 0.08);
+      --glass-bg-dark: rgba(0, 0, 0, 0.5); /* For scrolled header */
+      --glass-border-dark: rgba(255, 255, 255, 0.05);
+
+      --gradient-light: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+      --gradient-dark: linear-gradient(135deg, #333333 0%, #111111 100%);
+      --gradient-text: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+      --gradient-button: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --primary-gradient: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
-      --secondary-gradient: linear-gradient(135deg, #f5f5f5 0%, #d0d0d0 100%);
-      --accent-gradient: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-      --dark-gradient: linear-gradient(135deg, #000000 0%, #111111 100%);
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
-    }
-
     body {
-      background: #000000;
-      color: #ffffff;
+      background: var(--darker-bg);
+      color: var(--primary-color);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: none;
+      cursor: default; /* Removed custom cursor, cleaner */
     }
 
-    /* Custom Cursor */
-    .cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transition: all 0.1s ease;
-    }
-
-    .cursor-dot {
-      width: 4px;
-      height: 4px;
-      background: #fff;
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transition: all 0.1s ease;
-    }
-
-    /* Clean Background */
-    .clean-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000000;
-      z-index: -2;
-    }
-
-    /* Minimal Floating Particles */
+    /* Minimal Floating Particles - Refined */
     .particles {
       position: fixed;
       top: 0;
@@ -84,15 +53,15 @@
       position: absolute;
       width: 1px;
       height: 1px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05); /* Less opaque */
       border-radius: 50%;
-      animation: particleFloat 25s infinite linear;
+      animation: particleFloat 30s infinite linear; /* Slower animation */
     }
 
     @keyframes particleFloat {
       0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.3; }
-      90% { opacity: 0.3; }
+      10% { opacity: 0.1; } /* Less visible */
+      90% { opacity: 0.1; }
       100% { transform: translateY(-100vh) translateX(50px) rotate(180deg); opacity: 0; }
     }
 
@@ -102,18 +71,19 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 20px 0;
+      background: var(--glass-bg-light); /* Less opaque */
+      backdrop-filter: blur(15px); /* Slightly less blur */
+      border-bottom: 1px solid var(--glass-border-light);
+      padding: 15px 0; /* Slightly reduced padding */
       z-index: 1000;
       transition: all 0.3s ease;
     }
 
     .header.scrolled {
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(25px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      background: var(--glass-bg-dark); /* Darker on scroll */
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border-dark);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Subtler shadow */
     }
 
     .header .container {
@@ -128,36 +98,36 @@
     .logo-link {
       display: inline-block;
       line-height: 0;
-      transition: transform 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
     .logo-link:hover {
-      transform: scale(1.1) rotateY(10deg);
+      transform: scale(1.05);
     }
 
     .logo {
-      height: 45px;
+      height: 40px; /* Slightly smaller logo */
       width: auto;
-      filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+      filter: brightness(1.1); /* Subtler brightness */
       transition: all 0.3s ease;
     }
 
     .main-nav ul {
       list-style: none;
       display: flex;
-      gap: 40px;
+      gap: 30px; /* Reduced gap for cleaner look */
       align-items: center;
     }
 
     .main-nav a {
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--secondary-color);
       text-decoration: none;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 1rem; /* Consistent font size */
       position: relative;
       transition: all 0.3s ease;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 8px 15px; /* Reduced padding */
+      border-radius: 20px; /* Slightly smaller radius */
       background: transparent;
     }
 
@@ -168,17 +138,17 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--primary-gradient);
-      border-radius: 25px;
+      background: var(--gradient-light);
+      border-radius: 20px;
       opacity: 0;
-      transform: scale(0.8);
+      transform: scale(0.9); /* Subtler scale on hover */
       transition: all 0.3s ease;
       z-index: -1;
     }
 
     .main-nav a:hover {
-      color: #ffffff;
-      transform: translateY(-2px);
+      color: var(--darker-bg); /* Darker text on hover for contrast */
+      transform: translateY(-1px); /* Subtler lift */
     }
 
     .main-nav a:hover::before {
@@ -194,28 +164,28 @@
       justify-content: center;
       text-align: center;
       position: relative;
-      padding: 120px 40px 80px;
+      padding: 120px 20px 80px; /* Adjusted padding */
     }
 
     .hero-content {
-      max-width: 1000px;
+      max-width: 900px; /* Slightly narrower for focus */
       z-index: 10;
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
+      font-size: clamp(3rem, 7vw, 5.5rem); /* Adjusted clamp for better scaling */
       font-weight: 900;
-      margin-bottom: 30px;
-      background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+      margin-bottom: 25px; /* Reduced margin */
+      background: var(--gradient-text);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: heroTitle 1.2s ease-out;
-      letter-spacing: -0.02em;
+      animation: heroTitle 1s ease-out; /* Faster animation */
+      letter-spacing: -0.03em; /* Tighter letter spacing */
     }
 
     .highlight {
-      background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+      background: var(--gradient-text);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -223,98 +193,97 @@
     }
 
     @keyframes heroTitle {
-      0% { opacity: 0; transform: translateY(50px) rotateX(30deg); }
+      0% { opacity: 0; transform: translateY(40px) rotateX(10deg); } /* Subtler initial state */
       100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
     }
 
     .subheadline {
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 60px;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem); /* Adjusted clamp */
+      color: var(--secondary-color);
+      margin-bottom: 50px; /* Reduced margin */
       font-weight: 300;
-      animation: slideUp 1s ease-out 0.3s both;
-      max-width: 600px;
+      animation: slideUp 0.9s ease-out 0.2s both; /* Faster animation */
+      max-width: 550px; /* Reduced max-width */
       margin-left: auto;
       margin-right: auto;
     }
 
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(20px); } /* Subtler slide */
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* Clean Email Signup */
     .email-signup {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 30px;
-      padding: 50px;
-      margin-bottom: 80px;
-      animation: slideUp 1s ease-out 0.6s both;
+      background: var(--glass-bg-light);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border-light);
+      border-radius: 25px; /* Slightly smaller radius */
+      padding: 40px; /* Reduced padding */
+      margin-bottom: 70px; /* Reduced margin */
+      animation: slideUp 0.9s ease-out 0.4s both; /* Faster animation */
       position: relative;
     }
 
     .email-signup h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      font-size: 2.2rem; /* Adjusted font size */
+      margin-bottom: 18px; /* Reduced margin */
       font-weight: 700;
-      color: #ffffff;
+      color: var(--primary-color);
     }
 
     .email-signup p {
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 40px;
-      font-size: 1.2rem;
+      color: var(--secondary-color);
+      margin-bottom: 35px; /* Reduced margin */
+      font-size: 1.1rem; /* Consistent font size */
       font-weight: 300;
     }
 
     .email-form {
       display: flex;
-      gap: 20px;
-      max-width: 600px;
+      gap: 15px; /* Reduced gap */
+      max-width: 550px; /* Reduced max-width */
       margin: 0 auto;
       flex-wrap: wrap;
     }
 
     .email-form input[type="email"] {
       flex: 1;
-      min-width: 300px;
-      padding: 20px 25px;
+      min-width: 280px; /* Adjusted min-width */
+      padding: 18px 22px; /* Adjusted padding */
       font-size: 16px;
-      border-radius: 50px;
-      border: 2px solid transparent;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      color: #ffffff;
-      transition: all 0.3s ease;
+      border-radius: 40px; /* Adjusted radius */
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Subtler border */
+      background: rgba(255, 255, 255, 0.05); /* Subtler background */
+      color: var(--primary-color);
+      transition: all 0.2s ease; /* Faster transition */
       font-family: inherit;
       outline: none;
     }
 
     .email-form input[type="email"]:focus {
-      border-color: #4facfe;
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
-      box-shadow: 0 20px 40px rgba(79, 172, 254, 0.2);
+      border-color: var(--primary-color);
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px); /* Subtler lift */
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1); /* Subtler shadow */
     }
 
     .email-form input[type="email"]::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+      color: var(--secondary-color);
     }
 
     .email-form button {
-      padding: 20px 40px;
+      padding: 18px 35px; /* Adjusted padding */
       font-size: 16px;
       font-weight: 600;
-      background: var(--primary-gradient);
-      color: #ffffff;
+      background: var(--gradient-button);
+      color: var(--darker-bg);
       border: none;
-      border-radius: 50px;
+      border-radius: 40px; /* Adjusted radius */
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease; /* Faster transition */
       font-family: inherit;
-      min-width: 160px;
+      min-width: 150px; /* Adjusted min-width */
       position: relative;
       overflow: hidden;
     }
@@ -326,13 +295,13 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); /* Subtler shimmer */
+      transition: left 0.4s; /* Faster shimmer */
     }
 
     .email-form button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px); /* Subtler lift */
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
     }
 
     .email-form button:hover::before {
@@ -341,136 +310,99 @@
 
     /* Interactive QR Section */
     .qr-section {
-      animation: slideUp 1s ease-out 1s both;
+      animation: slideUp 0.9s ease-out 0.6s both; /* Faster animation */
     }
 
     .qr-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 50px;
+      font-size: 2.2rem; /* Adjusted font size */
+      margin-bottom: 40px; /* Reduced margin */
       font-weight: 700;
-      color: #ffffff;
+      color: var(--primary-color);
     }
 
     .qr-codes {
       display: flex;
       justify-content: center;
-      gap: 80px;
+      gap: 60px; /* Reduced gap */
       flex-wrap: wrap;
-      margin-bottom: 100px;
+      margin-bottom: 90px; /* Reduced margin */
     }
 
     .qr-item {
       text-align: center;
-      transition: all 0.4s ease;
+      transition: all 0.3s ease; /* Faster transition */
       cursor: pointer;
     }
 
     .qr-item:hover {
-      transform: translateY(-10px) scale(1.05);
+      transform: translateY(-8px) scale(1.03); /* Subtler lift and scale */
     }
 
     .qr-placeholder {
-      width: 200px;
-      height: 200px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 2px solid var(--glass-border);
-      border-radius: 25px;
+      width: 180px; /* Slightly smaller */
+      height: 180px;
+      background: var(--glass-bg-light);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border-light); /* Subtler border */
+      border-radius: 20px; /* Slightly smaller radius */
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      transition: all 0.4s ease;
+      margin-bottom: 15px; /* Reduced margin */
+      transition: all 0.3s ease;
       position: relative;
     }
 
     .qr-placeholder:hover {
-      border-color: #ffffff;
-      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.15); /* Subtler hover border */
+      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.08); /* Subtler shadow */
+      background: rgba(255, 255, 255, 0.04); /* Subtler hover background */
     }
 
     .qr-placeholder svg {
-      width: 80px;
-      height: 80px;
-      opacity: 0.8;
-      transition: all 0.3s ease;
+      width: 70px; /* Slightly smaller icon */
+      height: 70px;
+      opacity: 0.7; /* Less opaque */
+      transition: all 0.2s ease; /* Faster transition */
       z-index: 1;
+      fill: var(--primary-color); /* Icon color */
     }
 
     .qr-item:hover svg {
-      opacity: 1;
-      transform: scale(1.1);
+      opacity: 0.9; /* Slightly more opaque */
+      transform: scale(1.05); /* Subtler scale */
     }
 
     .qr-item p {
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--secondary-color);
       font-weight: 600;
-      font-size: 1.2rem;
-      transition: color 0.3s ease;
+      font-size: 1.1rem; /* Consistent font size */
+      transition: color 0.2s ease;
     }
 
     .qr-item:hover p {
-      color: #ffffff;
+      color: var(--primary-color);
     }
 
-    /* Floating Action Buttons */
-    .floating-actions {
-      position: fixed;
-      right: 30px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      z-index: 500;
-    }
-
-    .fab {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
-      border: none;
-      color: #000000;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .fab:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
-    }
+    /* Floating Action Buttons - Removed as per "too much things going on" */
+    /* .floating-actions { ... } */
 
     /* Footer */
     .footer {
-      background: var(--dark-gradient);
-      border-top: 1px solid var(--glass-border);
-      padding: 60px 0 40px;
+      background: var(--darker-bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtler border */
+      padding: 50px 0 30px; /* Adjusted padding */
       text-align: center;
       position: relative;
       overflow: hidden;
-    }
-
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+      color: var(--secondary-color); /* Default footer text color */
     }
 
     .footer .container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 30px;
+      gap: 25px; /* Reduced gap */
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 40px;
@@ -478,82 +410,85 @@
 
     .social-links {
       display: flex;
-      gap: 30px;
+      gap: 25px; /* Reduced gap */
+      margin-bottom: 10px; /* Adjusted margin */
     }
 
     .social-link {
       display: block;
-      color: rgba(255, 255, 255, 0.6);
-      transition: all 0.3s ease;
-      padding: 15px;
+      color: var(--secondary-color); /* Subtle color for icons */
+      transition: all 0.2s ease; /* Faster transition */
+      padding: 12px; /* Reduced padding */
       border-radius: 50%;
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
+      background: var(--glass-bg-light); /* Subtle background */
+      backdrop-filter: blur(8px); /* Less blur */
+      border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
     }
 
     .social-link:hover {
-      color: #ffffff;
-      transform: translateY(-5px) scale(1.1);
-      background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+      color: var(--primary-color); /* Brighter on hover */
+      transform: translateY(-3px) scale(1.08); /* Subtler lift and scale */
+      background: rgba(255, 255, 255, 0.08); /* Slightly more prominent background on hover */
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.08); /* Subtler shadow */
     }
 
     .social-link svg {
-      width: 24px;
-      height: 24px;
+      width: 22px; /* Slightly smaller icon */
+      height: 22px;
       fill: currentColor;
       display: block;
     }
 
     .footer-links {
       display: flex;
-      gap: 30px;
+      gap: 25px; /* Reduced gap */
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .footer-links a {
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--secondary-color);
       text-decoration: none;
       font-weight: 500;
-      transition: all 0.3s ease;
-      padding: 10px 20px;
-      border-radius: 20px;
+      transition: all 0.2s ease;
+      padding: 8px 15px; /* Reduced padding */
+      border-radius: 15px; /* Smaller radius */
       background: transparent;
     }
 
     .footer-links a:hover {
-      color: #ffffff;
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
+      color: var(--primary-color);
+      background: var(--glass-bg-light); /* Subtle background on hover */
+      backdrop-filter: blur(8px);
     }
 
     .footer p {
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 0.9rem;
+      color: var(--accent-color); /* Even more subtle for copyright */
+      font-size: 0.85rem; /* Slightly smaller font */
+      margin-top: 15px; /* Added margin */
     }
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
       .header .container {
         flex-direction: column;
-        gap: 20px;
-        padding: 15px 20px;
+        gap: 15px; /* Reduced gap */
+        padding: 10px 20px; /* Reduced padding */
       }
 
       .main-nav ul {
-        gap: 20px;
+        gap: 15px; /* Reduced gap */
         flex-wrap: wrap;
         justify-content: center;
       }
 
       .hero {
-        padding: 100px 20px 60px;
+        padding: 100px 20px 60px; /* Adjusted padding */
       }
 
       .email-signup {
-        padding: 40px 25px;
-        margin: 0 10px 60px;
+        padding: 30px 20px; /* Reduced padding */
+        margin: 0 10px 50px; /* Reduced margin */
       }
 
       .email-form {
@@ -564,42 +499,72 @@
       .email-form input[type="email"],
       .email-form button {
         width: 100%;
-        max-width: 400px;
+        max-width: 350px; /* Slightly smaller max-width */
         min-width: unset;
       }
 
       .qr-codes {
-        gap: 40px;
+        gap: 30px; /* Reduced gap */
         flex-direction: column;
         align-items: center;
       }
 
-      .floating-actions {
-        display: none;
+      .qr-placeholder {
+        width: 150px;
+        height: 150px;
+      }
+
+      .qr-placeholder svg {
+        width: 60px;
+        height: 60px;
       }
 
       .footer .container {
         padding: 0 20px;
+        gap: 20px; /* Reduced gap */
+      }
+
+      .social-links {
+        gap: 20px; /* Reduced gap */
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 10px; /* Reduced gap */
       }
     }
 
     @media (max-width: 480px) {
       .hero h1 {
-        font-size: 3rem;
+        font-size: 2.8rem; /* Further adjustment for small screens */
+      }
+
+      .subheadline {
+        font-size: 1rem;
+      }
+
+      .email-signup h2, .qr-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .email-signup {
+        padding: 25px 15px;
+        margin: 0 5px 40px;
+      }
+
+      .email-form input[type="email"],
+      .email-form button {
+        padding: 15px 20px;
       }
 
       .qr-placeholder {
-        width: 160px;
-        height: 160px;
+        width: 130px;
+        height: 130px;
       }
 
-      .social-links {
-        gap: 20px;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 15px;
+      .qr-placeholder svg {
+        width: 50px;
+        height: 50px;
       }
     }
 
@@ -613,14 +578,14 @@
       to { opacity: 1; }
     }
 
-    /* Scroll Progress Bar */
+    /* Scroll Progress Bar - Subtle */
     .scroll-progress {
       position: fixed;
       top: 0;
       left: 0;
       width: 0%;
-      height: 3px;
-      background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+      height: 2px; /* Thinner */
+      background: var(--gradient-light);
       z-index: 9999;
       transition: width 0.1s ease;
     }
@@ -628,24 +593,8 @@
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
   
-  <div class="clean-bg"></div>
   <div class="particles" id="particles"></div>
-
-  <div class="floating-actions">
-    <button class="fab" onclick="scrollToTop()" title="Back to Top">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2l-8 8h5v10h6V10h5z"/>
-      </svg>
-    </button>
-    <button class="fab" onclick="toggleTheme()" title="Toggle Theme">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
-      </svg>
-    </button>
-  </div>
 
   <div class="loading">
     <header class="header" id="header">
@@ -713,4 +662,128 @@
           </a>
           <a href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook" class="social-link">
             <svg viewBox="0 0 24 24">
-              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15h-2.5v-3H10V9.5c0-2.2 1.44-3.4 3.67-3.4C14.72 6.1 15.5 6.2 16 6.3V8h-1.42c-1.33 0-1.68.67-1.68 1.63V12h3.5l-.6 3H13.5v6.8c4.56-.93 8-4.96 8-9.8z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com/yourchannel" target="_blank" aria-label="YouTube" class="social-link">
+            <svg viewBox="0 0 24 24">
+              <path d="M21.54 6.5C21.34 5.91 20.89 5.46 20.3 5.26c-1.54-.42-7.7-.42-7.7-.42s-6.16 0-7.7.42c-.59.2-1.04.65-1.24 1.24C3 8.04 3 12 3 12s0 3.96.46 5.5c.2.59.65 1.04 1.24 1.24 1.54.42 7.7.42 7.7.42s6.16 0 7.7-.42c.59-.2 1.04-.65 1.24-1.24C22 15.96 22 12 22 12s0-3.96-.46-5.5zM10 15.46V8.54L16 12l-6 3.46z"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="footer-links">
+          <a href="privacy/en/index.html" target="_blank">Privacy Policy</a>
+          <a href="contact/en/contact.html" target="_blank">Contact</a>
+        </div>
+        <p>© 2025 Kiyim. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Create animated background particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 40; // Reduced particle count for subtlety
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 25 + 's'; // Longer delay for more randomness
+        particle.style.animationDuration = (Math.random() * 10 + 20) + 's'; // Longer duration
+        container.appendChild(particle);
+      }
+    }
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) { // Added a scroll threshold
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + "%";
+    });
+
+    // Handle email form submission
+    document.getElementById('emailForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      const button = this.querySelector('button');
+      
+      // Simulate form submission
+      button.textContent = 'Submitting...';
+      button.disabled = true;
+      
+      setTimeout(() => {
+        button.textContent = 'Success!';
+        button.style.background = 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)';
+        
+        setTimeout(() => {
+          button.textContent = 'Notify Me';
+          button.disabled = false;
+          button.style.background = 'var(--gradient-button)';
+          this.reset();
+        }, 2000);
+      }, 1000);
+    });
+
+    // Handle vendor signup with language detection
+    function handleVendorSignup() {
+      const userLang = navigator.language || navigator.userLanguage;
+      let langCode = 'en'; // default
+
+      if (userLang.startsWith('ru')) {
+        langCode = 'ru';
+      } else if (userLang.startsWith('uz')) {
+        langCode = 'uz';
+      } else if (userLang.startsWith('it')) {
+        langCode = 'it';
+      }
+
+      console.log(`Vendor signup initiated for language: ${langCode}`);
+      window.location.href = `vendor registration/${langCode}/form.html`;
+    }
+
+    // Handle app download links
+    function downloadApp(platform) {
+      if (platform === 'ios') {
+        alert('Redirecting to App Store (Link not active yet).');
+        // window.location.href = 'YOUR_APP_STORE_LINK';
+      } else if (platform === 'android') {
+        alert('Redirecting to Google Play (Link not active yet).');
+        // window.location.href = 'YOUR_GOOGLE_PLAY_LINK';
+      }
+    }
+
+    // Add smooth scroll behavior for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Initialize particles when page loads
+    window.addEventListener('load', () => {
+      createParticles();
+    });
+  </script>
+</body>
+</html>
