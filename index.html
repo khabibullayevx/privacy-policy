@@ -864,14 +864,13 @@
 
     // Handle app download links
     function downloadApp(platform) {
-      if (platform === 'ios') {
-        alert('Redirecting to App Store (Link not active yet).');
-        // window.location.href = 'YOUR_APP_STORE_LINK';
-      } else if (platform === 'android') {
-        alert('Redirecting to Google Play (Link not active yet).');
-        // window.location.href = 'YOUR_GOOGLE_PLAY_LINK';
-      }
-    }
+  if (platform === 'ios') {
+    window.location.href = 'https://apps.apple.com/it/app/kiyim/id6746371212?l=en-GB';
+  } else if (platform === 'android') {
+    alert('Google Play link not active yet. Stay tuned!');
+    // window.location.href = 'https://play.google.com/store/apps/details?id=your.package.name';
+  }
+}
 
     // Add smooth scroll behavior for anchor links and close drawer
     document.querySelectorAll('a[href^="#"], .drawer-link').forEach(anchor => {
